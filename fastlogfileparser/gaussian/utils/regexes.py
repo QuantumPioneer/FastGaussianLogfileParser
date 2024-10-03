@@ -49,6 +49,19 @@ DATA = {
         r" APT charges:"
     ),
     "charge_and_multiplicity": r" Charge = {1,2}(-?\d) Multiplicity = (\d)",
+    "dipole_au": r"   Tot        (-?\d+.\d+)D([\+|-]\d+)",
+    "iso_polarizability_au": r"   iso        (-?\d+.\d+)D([\+|-]\d+)",
+    "aniso_polarizability_au": r"   aniso      (-?\d+.\d+)D([\+|-]\d+)",
+    "dipole_moment_debye": r"    X=\s+(-?\d+.\d+)\s+Y=\s+(-?\d+.\d+)\s+Z=\s+(-?\d+.\d+)",
+    "homo_lumo_gap": (
+        r" Alpha  occ\. eigenvalues --[\s+-?\d+.\d+]+?\s+(-?\d+.\d+)\n"
+        r" Alpha virt\. eigenvalues --\s+(-?\d+.\d+)"
+    ),
+    "beta_homo_lumo_gap": (
+        r"  Beta  occ\. eigenvalues --[\s+-?\d+.\d+]+?\s+(-?\d+.\d+)\n"
+        r"  Beta virt\. eigenvalues --\s+(-?\d+.\d+)"
+    ),
+    "nmr_shielding": r"\s+(\d+)\s+..?\s+Isotropic =\s+(\d+.\d+)\s+Anisotropy =\s+(\d+.\d+)"
 }
 
 METADATA = {
@@ -61,9 +74,4 @@ METADATA = {
 }
 
 RETRIEVAL_PATTERNS = {**DATA, **METADATA}
-
-# other options:
-# homo-lumo gap, polarizability, dipole moment, APT partial charges, occupancy
-
-
 COMPILED_PATTERNS = {pattern_name: re.compile(pattern) for (pattern_name, pattern) in RETRIEVAL_PATTERNS.items()}
